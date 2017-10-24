@@ -52,10 +52,7 @@ public class EventSimulation {
         System.out.println("Simulation begins...\n");
         
         while(eventQ.getNext() != null) {
-            //eventQ.print();
-            //System.out.println();
             event = eventQ.dequeue();
-            //System.out.println(event.getType());
             switch(event.getType()) {
                 case 1: arrive(event);
                 break;
@@ -141,9 +138,6 @@ public class EventSimulation {
     
     //Treatment has started. Adds an event for finished treatment
     private void treatment(Event event) {
-        //int x;
-        //if(waitQ.getRooms() <= 3) x = 3-waitQ.getRooms();
-        //else x = 0;
         Patient patient = event.getPatient();
         System.out.printf("Time %d: %d (Priority %d) starts treatment (waited %d, %d rm(s) remain)\n", event.getTime(), patient.getID(), patient.getPriority(), patient.getWait(event.getTime()), (3-rooms));
         event.setEvent(5, event.getTime()+patient.getTreatReq());

@@ -20,10 +20,6 @@ public class PatientQ extends Node {
         before = null;
     }
     
-    private void setPatient(Patient patient) {
-        this.patient = patient;
-    }
-    
     public Patient getPat() {
         return patient;
     }
@@ -38,7 +34,7 @@ public class PatientQ extends Node {
                 patientQ = (PatientQ)patientQ.getNext();
             }
             patientQ.insert(new PatientQ(patient));
-        };
+        }
     }
     
     public void print() {
