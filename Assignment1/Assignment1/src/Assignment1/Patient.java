@@ -40,7 +40,6 @@ public class Patient {
     
     public void setAssesment(int assT) {
         ((TimeNodes)time.getNext()).setTime(assT);
-        getWait(assT);
     }
     public int getAssesment() {
         return ((TimeNodes)time.getNext()).getTime();
@@ -95,7 +94,7 @@ public class Patient {
     public void printTimes() {
         tNode = time;
         while(tNode != null) {
-            System.out.println(tNode.getTime());
+            System.out.printf("%10s ", tNode.getTime());
             tNode = (TimeNodes)tNode.getNext();
         }
     }

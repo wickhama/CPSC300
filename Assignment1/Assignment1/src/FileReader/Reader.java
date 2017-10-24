@@ -23,4 +23,8 @@ public class Reader {
         }
         return token;
     }
+    
+    public boolean hasNext() {
+        return sc.hasNext();
+    }
 }

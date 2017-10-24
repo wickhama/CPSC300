@@ -37,12 +37,4 @@ public abstract class Node {
     public void setBefore(Node before) {
         this.before = before;
     }
-    
-    public void print() {
-        Node node = this;
-        while(node != null) {
-            System.out.print(node+", ");
-            node = node.getNext();
-        }
-    }
 }

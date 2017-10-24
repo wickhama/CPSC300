@@ -32,8 +32,18 @@ public class WaitQ extends Node {
     
     public void addPat(Patient patient) {
         WaitQ node = this;
-        while(node.getNext() != null && patient.getPriority() >= ((WaitQ)node.getNext()).getPatient().getPriority()) {
-            node = (WaitQ)node.getNext();
+        while(node.getNext() != null) {
+            if(patient.getPriority() < ((WaitQ)node.getNext()).getPatient().getPriority()) {
+                node.insert(new WaitQ(patient));
+                return;
+            }
+            else if(patient.getPriority() == ((WaitQ)node.getNext()).getPatient().getPriority() && patient.getID() < ((WaitQ)node.getNext()).getPatient().getID()) {
+                node.insert(new WaitQ(patient));
+                return;
+            }
+            else {
+                node = (WaitQ)node.getNext();
+            }
         }
         node.insert(new WaitQ(patient));
         rooms++;

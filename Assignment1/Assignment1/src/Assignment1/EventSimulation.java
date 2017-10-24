@@ -45,11 +45,12 @@ public class EventSimulation {
         admitQ = new Q();
         
         if(!createPatient()) {
-            System.out.println("Error with file");
+            System.out.println("Error with input of file");
             return;
         }
-        figure out waitQ add and remove order!
-        maybe restart???
+        
+        System.out.println("Simulation begins...\n");
+        
         while(eventQ.getNext() != null) {
             //eventQ.print();
             //System.out.println();
@@ -72,6 +73,11 @@ public class EventSimulation {
                 break;
             }
         }
+        
+        System.out.println("\n...All events Finished. Final Summary:\n");
+        System.out.printf("%-10s %s %10s %10s %10s %10s %10s\n","Patient", "Priority", "Arrival", "Assesment", "Treatment", "Departure", "Waiting");
+        System.out.printf("%-10s %20s %10s %10s %10s %10s\n", "Number", "Time", "Time", "Required", "Time", "Time");
+        patientQ.print();
     }    
     
     /*Adds Patient to appropriate Q based on Priority*/
@@ -88,22 +94,27 @@ public class EventSimulation {
         }
         else {
             System.out.printf("Time %d: %d (emergency) arrives\n", event.getTime(), patient.getID());
-            waitQ.addPat(patient);
+            patient.setAssesment(event.getTime());
             if(rooms < 3) { 
                 rooms++;
                 event.setEvent(4, event.getTime());
                 eventQ.addEvent(event);
             }
+            else waitQ.addPat(patient);
             System.out.printf("Time %d: %d (Priority %d) Enters the waiting room\n",event.getTime(), patient.getID(), patient.getPriority());
         }
         
-        createPatient();
+        if(!createPatient()) {
+            System.out.println("Error with input of file");
+            eventQ.setNext(null);
+        }
         
     }
     
     //Assesment is done, and signals the AssessQ for another patient
     private void asseses(Event event) {
         Patient patient = event.getPatient();
+        patient.setAssesment(event.getTime());
         System.out.printf("Time %d: %d starts assesment (waited %d)\n", event.getTime(),patient.getID(), patient.getWait(event.getTime()));
         event.setEvent(3, event.getTime()+4);
         eventQ.addEvent(event);
@@ -115,16 +126,16 @@ public class EventSimulation {
         patient.reset(event.getTime());
         System.out.printf("Time %d: %d assesment complete (Priority now %d)\n", event.getTime(), patient.getID(), patient.getPriority());
         System.out.printf("Time %d: %d (Priority %d) Enters the waiting room.\n", event.getTime(), patient.getID(), patient.getPriority());
-        waitQ.addPat(patient);
+
         assesQ.dequeue();
         if(rooms < 3) {
             rooms++;
-            System.out.println("Event Created"+patient.getID());
             event.setEvent(4, event.getTime());
             eventQ.addEvent(event);
         }
+        else waitQ.addPat(patient);
         if(assesQ.getNext() != null) {
-            eventQ.addEvent(new Event(assesQ.dequeue(), 2, event.getTime()));
+            eventQ.addEvent(new Event(((Q)assesQ.getNext()).getPatient(), 2, event.getTime()));
         }
     }
     
@@ -143,10 +154,10 @@ public class EventSimulation {
         Patient patient = event.getPatient();
         System.out.printf("Time %d: %d Treatment Finished.\n", event.getTime(), patient.getID());
         if(1 == patient.getPriority()) {
+            patient.reset(event.getTime());
             if(admitQ.getNext() == null) {
                 patient.reset(event.getTime());
                 event.setEvent(6, event.getTime()+3);
-                patient.reset(event.getTime());
                 eventQ.addEvent(event);
             }
             admitQ.addPat(patient);
@@ -160,7 +171,7 @@ public class EventSimulation {
     //Addmittance is finished. Signals admitQ for another patient
     private void admitted(Event event) {
         Patient patient = event.getPatient();
-        System.out.printf("Time %d: %d (Priority %d, waited %d) Admitted to hospital\n", event.getTime(), patient.getID(), patient.getPriority(), patient.getWait(event.getTime()));
+        System.out.printf("Time %d: %d (Priority %d, waited %d) Admitted to hospital\n", event.getTime(), patient.getID(), patient.getPriority(), patient.getWait(event.getTime()-3));
         event.setEvent(7, event.getTime());
         eventQ.addEvent(event);
         admitQ.dequeue();
@@ -172,30 +183,36 @@ public class EventSimulation {
     //Patient has left the building. Signals waitQ for a patient to enter treatment
     private void depart(Event event) {
         Patient patient = event.getPatient();
-        //int x;
-        //if(3 >= waitQ.getRooms()) x = 3-waitQ.getRooms();
-        //else x = 0;
+        patient.setDepart(event.getTime());
         rooms--;
-        waitQ.dequeue();
         System.out.printf("Time %d: %d (Priority %d) Departs, %d rm(s) remain\n", event.getTime(), patient.getID(), patient.getPriority(), 3-rooms);
-        if(waitQ.getNext() != null) {waitQ.print();
-            eventQ.addEvent(new Event(((WaitQ)waitQ.getNext()).getPatient(), 4, event.getTime()));
+        if(waitQ.getNext() != null) {
+            eventQ.addEvent(new Event(waitQ.dequeue(), 4, event.getTime()));
             rooms++;
         }
     }
     
     //Creates Patient and adds them to the PatientQ and creates an arrival event and adds to EventQ
     private boolean createPatient() {
-        int aTime;
+        if(!reader.hasNext()) {
+            return true;
+        }
+        int aTime, treat;
+        String arr;
         try {
             aTime = Integer.parseInt(reader.readNext());
+            arr = reader.readNext();
+            if(!arr.equals("E") && !arr.equals("W")) {
+                throw new NumberFormatException();
+            }
+            treat = Integer.parseInt(reader.readNext());
         } catch(NumberFormatException e) {
             return false;
         }
         
         int priority;
         boolean walkin;
-        if(reader.readNext().equals("E")) {
+        if(arr.equals("E")) {
             priority = 1;
             walkin = false;
         } else {
@@ -204,7 +221,7 @@ public class EventSimulation {
         }
         Patient patient = new Patient(id++, priority, walkin);
         patient.setArrival(aTime);
-        patient.setTreatReq(Integer.parseInt(reader.readNext()));
+        patient.setTreatReq(treat);
         
         patientQ.insertPat(patient);
         event = new Event(patient, 1, patient.getArrival());

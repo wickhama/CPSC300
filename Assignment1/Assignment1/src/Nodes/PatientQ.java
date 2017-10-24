@@ -29,11 +29,11 @@ public class PatientQ extends Node {
     }
     
     public void insertPat(Patient patient) {
-        if (this.patient == null) {
-            this.patient = patient;
+        if (next == null) {
+            insert(new PatientQ(patient));
         }
         else {
-            PatientQ patientQ = this;
+            PatientQ patientQ = (PatientQ) next;
             while(patientQ.getNext() != null) {
                 patientQ = (PatientQ)patientQ.getNext();
             }
@@ -42,13 +42,19 @@ public class PatientQ extends Node {
     }
     
     public void print() {
-        PatientQ patientQ = this;
-        
+        PatientQ patientQ = (PatientQ)next;
+        int numbOfPat = 0;
+        int averWait = 0;
         while(patientQ != null){
-            System.out.println(patientQ.getPat().getID());
+            System.out.printf("%-10d %5d   ", patientQ.getPat().getID(), patientQ.getPat().getPriority());
             patientQ.getPat().printTimes();
-            patientQ = (PatientQ)patientQ.getNext();      
+            System.out.println();  
+            numbOfPat++;
+            averWait += patientQ.getPat().getTotWait();
+            patientQ = (PatientQ)patientQ.getNext();
         }
         
+        System.out.printf("\nNumber of Patient: %d\n", numbOfPat);
+        System.out.printf("Average Wait Time: %.6f\n", (float)averWait/numbOfPat);
     }
 }

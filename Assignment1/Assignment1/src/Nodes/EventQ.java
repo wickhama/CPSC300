@@ -47,17 +47,32 @@ public class EventQ extends Node{
 //            }
 //            eventQ.insert(new EventQ(event));
 //        }
-        else {
+        else { //Figure out why 212 is not going before 215
                 EventQ eventQ = this;
-                do {
-                    if(event.getTime() < ((EventQ)eventQ.getNext()).getEvent().getTime()) {
+                while(eventQ.getNext() != null) {
+                    
+                    if(event.getTime() < ((EventQ)eventQ.getNext()).getEvent().getTime() ) {
                         eventQ.insert(new EventQ(event));
-                        break;
+                        return;
+                    }
+                    else if(event.getTime() == ((EventQ)eventQ.getNext()).getEvent().getTime() && event.getPatient().getID() < ((EventQ)eventQ.getNext()).getEvent().getPatient().getID()) {
+                        eventQ.insert(new EventQ(event));
+                        return;
                     }
                     else {
                         eventQ = (EventQ)eventQ.getNext();
                     }
-                } while(eventQ.getNext() != null);
+                }
+                eventQ.insert(new EventQ(event));
+//                do {
+//                    if(event.getTime() <= ((EventQ)eventQ.getNext()).getEvent().getTime() && event.getPatient().getID() < ((EventQ)eventQ.getNext()).getEvent().getPatient().getID() ) {
+//                        eventQ.insert(new EventQ(event));
+//                        return;
+//                    }
+//                    else {
+//                        eventQ = (EventQ)eventQ.getNext();
+//                    }
+//                } while(eventQ.getNext() != null);
 //                while(eventQ.getNext() != null) {
 //                    if(event.getTime() < eventQ.getEvent().getTime()) {
 //                        eventQ.getBefore().insert(new EventQ(event));
