@@ -41,7 +41,7 @@ public class Assignment300 {
         //create first event
         patient = PatientQ.create();
         EventQ.enQ(patient.getArrivalTime(), 1, patient);
-        EventQ.print();
+
         while(!EventQ.isEmpty()) {
             event = EventQ.deQ();
             switch(event.getType()) {
@@ -59,6 +59,15 @@ public class Assignment300 {
                     break;
                 case 5:
                     Events.treatmentStarted(event);
+                    break;
+                case 6:
+                    Events.treatmentFinished(event);
+                    break;
+                case 7:
+                    Events.admitted(event);
+                    break;
+                case 8:
+                    Events.departure(event);
                     break;
             }
         }

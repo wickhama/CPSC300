@@ -23,9 +23,12 @@ public abstract class Q {
     }
     
     //Removes the top of the list
-    public Q remove() {
-        Q node = getNext();
-        setNext(getNext().getNext());
+    protected Q remove() {
+        Q node = null;
+        if(getNext() != null) {
+            node = next;
+            next = next.getNext();
+        }
         return node;
     }
     

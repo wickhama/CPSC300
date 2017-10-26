@@ -3,7 +3,7 @@ package assignment.pkg300.Queues;
 import assignment.pkg300.Reader;
 
 /**
- *PatientQ holds a list of all patients that have attended the hospital in decreasing numerical order.
+ *PatientQ holds a list of all patients that have attended the hospital in numerical order.
  * 
  * @author SamTheTurdBurgler
  */
@@ -11,15 +11,23 @@ public class PatientQ {
     
     private static int id;
     private static Patient head;
-    private Patient node;   //Temporary variable to be use in methods
     
     public PatientQ() {
         id = 28064212;
         head = new Patient();
     }
     
-    public static void addPatient(Patient patient) {
-        head.insert(patient);
+    private static void enQ(Patient patient) {
+        Q node = head;
+        while(node.getNext() != null) {
+            node = node.getNext();
+        }
+        node.insert(patient);
+    }
+    
+    public static void resetWait(int id, int time) {
+        Patient node = find(id);
+        node.reset(time);
     }
     
     public static Patient find(int id) {
@@ -34,7 +42,7 @@ public class PatientQ {
     }
     
     public void print() {
-        node = head;
+        Patient node = head;
         while(node.getNext() != null) {
             node = (Patient)node.getNext();
             node.print();
@@ -56,7 +64,7 @@ public class PatientQ {
         Patient patient = new Patient(id++, walkin);
         patient.setArrivalTime(arrival);
         patient.setTreatmentTime(treatment);
-        addPatient(patient);
+        enQ(patient);
         return patient;
     }
 }

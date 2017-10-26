@@ -26,7 +26,7 @@ public class Patient extends Q{
     
     public boolean isWalkin() {return walkin;}
     public int getID() {return id;}
-    private void reset(int time) {start = time;}
+    protected void reset(int time) {start = time;}
     public int getWait(int time) {
         int wait = time - start;
         setTotalWait(wait);
