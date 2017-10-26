@@ -71,6 +71,7 @@ public class Events {
     public static void enters(Event event) {
         time = event.getTime();
         Patient patient = event.getPatient();
+        PatientQ.resetWait(patient.getID(), time);
         msg = String.format("(Priority %d) Enters Waiting Room", patient.getPriority());
         if(3 > rooms) {
             rooms++;
@@ -79,7 +80,6 @@ public class Events {
         }
         else {
             PriorityQ.enQ(patient);
-            PriorityQ.print();
         }
         
         print(time, patient.getID(), msg);
@@ -115,7 +115,7 @@ public class Events {
     public static void admitted(Event event) {
         time = event.getTime();
         Patient patient = event.getPatient();
-        msg = String.format("(Priority %d, Waited %d) Admitted to the hospital",patient.getPriority(), patient.getWait(time));
+        msg = String.format("(Priority %d, Waited %d) Admitted to the hospital",patient.getPriority(), patient.getWait(time-3));
         print(time, patient.getID(), msg);
         event.setEvent(8, time);
         EventQ.enQ(event);
@@ -125,11 +125,12 @@ public class Events {
         time = event.getTime();
         Patient patient = event.getPatient();
         rooms--;
-        if(rooms < 3) {
-            EventQ.enQ(time, 5, PriorityQ.deQ());
-        }
         msg = String.format("(Priority %d) Departs, %d rm(s) remain", patient.getPriority(), 3-rooms);
         print(time, patient.getID(), msg);
+        if(rooms < 3 && !PriorityQ.isEmpty()) {
+            rooms++;
+            EventQ.enQ(time, 5, PriorityQ.deQ());
+        }
     }
     
     public static void print(int time, int id, String msg) {
