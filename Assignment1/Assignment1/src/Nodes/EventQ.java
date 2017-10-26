@@ -46,7 +46,6 @@ public class EventQ extends Node{
                     }
                 }
                 eventQ.insert(new EventQ(event));
-                //if(eventQ.getNext() == null) {eventQ.insert(new EventQ(event));}
         }
     }
     
