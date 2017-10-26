@@ -17,14 +17,15 @@ public class Assignment300 {
     private final Scanner sc;
     private Reader read;
     private final EventQ eventQ;
-    private final PatientQ patientQ;
+    //private final PatientQ patientQ = new PatientQ();
     private final PriorityQ vipQ;
     private Event event; //Temporary variable to use in simulation
     
     public Assignment300() {
         sc = new Scanner(System.in);
         eventQ = new EventQ();
-        patientQ = new PatientQ();
+        //new PatientQ();
+        //patientQ = new PatientQ();
         vipQ = new PriorityQ();
         
         simulate();
@@ -38,6 +39,9 @@ public class Assignment300 {
             System.out.println("Error with file name : " + e);
             return;
         }
+        
+        System.out.println("Simulation begins...");
+        
         //create first event
         int patient = PatientQ.create();
         EventQ.enQ(PatientQ.getArrival(patient), 1, patient);
@@ -71,6 +75,10 @@ public class Assignment300 {
                     break;
             }
         }
+        System.out.println("\n...All events complete. Final Summary: \n");
+        System.out.printf("%-10s %s %10s %10s %10s %10s %10s\n", "Patient", "Priority", "Arrival", "Assesment", "Treatment", "Departure", "Waiting");
+        System.out.printf("%10s %20s %10s %10s %10s %10s\n", "Number", "Time", "Time", "Required", "Time", "Time");
+        PatientQ.print();
     }
 
     /**

@@ -84,8 +84,8 @@ public class Times {
     protected void print() {
         node = head;
         while(node.getNext() != null) {
-            System.out.printf("%10d", node.getTime());
             node = (TimeNode)node.getNext();
+            System.out.printf("%11d", node.getTime());
         }
     }
 }

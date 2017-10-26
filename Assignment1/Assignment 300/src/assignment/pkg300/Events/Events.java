@@ -3,21 +3,24 @@ package assignment.pkg300.Events;
 
 import assignment.pkg300.Queues.Event;
 import assignment.pkg300.Queues.EventQ;
-import assignment.pkg300.Queues.Patient;
 import assignment.pkg300.Queues.PatientQ;
 import assignment.pkg300.Queues.PriorityQ;
 import java.util.Random;
 
 /**
- *Abstract Events to encapsulate all events
+ *Events handles all of the events in the simulation.
+ * Methods are static and to be called from the main class(Assignment300), switch statement.
+ * 
  * @author SamTheTurdBurgler
  */
 public class Events {
     
+    //Used by every method. 
     private static int time;
+    private static String msg;
+    
     private static int assesmentTime;
     private static int admitTime;
-    private static String msg;
     private static int rooms;
     private static final Random RAND = new Random(1000);
     
@@ -27,23 +30,25 @@ public class Events {
         admitTime = 0;
     }
     
+    /*Arrival: Patient arrives
+    walk-in : event is created for them to be assesed.
+    Emergency : event is created for them to enter the waiting room
+    then next line of data is read and processed
+    */
     public static void arrival(Event event) {
         time = event.getTime();
         assesmentTime = assesmentTime < time ? time : assesmentTime;
         int patient = event.getID();
-        PatientQ.setAssesment(patient, assesmentTime);
-        //Patient patient = PatientQ.find(event.getID());
-        //patient.setAssesment(assesmentTime);
         if(PatientQ.isWalkin(patient)) {
             msg = "(Walk-in) arrives";
-            //event.setEvent(2, assesmentTime);
+            PatientQ.setAssesment(patient, assesmentTime);
             EventQ.enQ(assesmentTime, 2, patient);
             assesmentTime += 4;
         }
         else {
             msg = "(Emergency) arrives";
-                //event.setEvent(4, time);
-                EventQ.enQ(time, 4, patient);
+            PatientQ.setAssesment(patient, time);
+            EventQ.enQ(time, 4, patient);
         }
         print(time, patient, msg);
         patient = PatientQ.create();
@@ -51,37 +56,42 @@ public class Events {
         EventQ.enQ(PatientQ.getArrival(patient), 1, patient);
     }
     
+    /*Assesment: Patient is assesed
+    event is created for when assesment is done. 
+    assesmentTime is increased to when patient will be done.
+    */
     public static void assesment(Event event) {
         time = event.getTime();
         int patient = event.getID();
-        //Patient patient = event.getPatient();
         msg = String.format("Starts Assesment (Waited %d)", PatientQ.getWait(patient, time));
         print(time, patient, msg);
-        //event.setEvent(3, time+4);
         EventQ.enQ(time+4, 3, patient);
     }
     
+    /*AssesmentComplete: Patient is finished with assesment
+    patient gets a priority number
+    event is created to enter waiting room
+    */
     public static void assesmentComplete(Event event) {
         time = event.getTime();
         int patient = event.getID();
-        //Patient patient = event.getPatient();
         PatientQ.setVIP(patient, RAND.nextInt(5)+1);
-        //patient.setPriority(RAND.nextInt(5)+1);
-        //event.setEvent(4, time);
         EventQ.enQ(time, 4, patient);
         msg = String.format("Assesment Completed (Priority now %d)", PatientQ.getVIP(patient));
         print(time, patient, msg);
     }
     
+    /*Enters: Patient enters waiting room
+    room available: event is created to start treatment
+    room unavailable: patient is added to priorityQ
+    */
     public static void enters(Event event) {
         time = event.getTime();
         int patient = event.getID();
-        //Patient patient = event.getPatient();
         PatientQ.resetWait(patient, time);
         msg = String.format("(Priority %d) Enters Waiting Room", PatientQ.getVIP(patient));
         if(3 > rooms) {
             rooms++;
-            //event.setEvent(5, time);
             EventQ.enQ(time, 5, patient);
         }
         else {
@@ -91,49 +101,56 @@ public class Events {
         print(time, patient, msg);
     }
     
+    /*TreatmentStarted: Patient starts Treatment
+    event is created for when patient is finished treatment
+    */
     public static void treatmentStarted(Event event) {
         time = event.getTime();
         int patient = event.getID();
-        //Patient patient = event.getPatient();
         msg = String.format("(Priority %d) Starts Treatment (Waited %d, %d rm(s) remain)", PatientQ.getVIP(patient), PatientQ.getWait(patient, time), 3-rooms);
-        //event.setEvent(6, time+patient.getTreatmentTime());
         EventQ.enQ(time+PatientQ.getTreatment(patient), 6, patient);
         print(time, patient, msg);
     }
     
+    /*TreatmentFinished(Event): patient is finished treatement
+    priority 1: event is created for patient to be admitted
+                addmitTime is increased to when patient will be finished admittance
+    priority !1: event is created for patient to depart
+    */ 
     public static void treatmentFinished(Event event) {
         time = event.getTime();
         int patient = event.getID();
-        //Patient patient = event.getPatient();
         PatientQ.resetWait(patient, time);
         msg = String.format("(Priority %d) Finishes Treatment", PatientQ.getVIP(patient));
         if(PatientQ.getVIP(patient) == 1) {
             admitTime = admitTime < time ? time : admitTime;
             admitTime += 3;
-            //event.setEvent(7, admitTime);
             EventQ.enQ(admitTime, 7, patient);
         }
         else {
-            //event.setEvent(8, time+1);
             EventQ.enQ(time+1, 8, patient);
         }
         print(time, patient, msg);
     }
     
+    /*Admitted(Event): Patient is admitted to hospital
+    event is created for patient to depart
+    */
     public static void admitted(Event event) {
         time = event.getTime();
         int patient = event.getID();
-        //Patient patient = event.getPatient();
         msg = String.format("(Priority %d, Waited %d) Admitted to the hospital", PatientQ.getVIP(patient), PatientQ.getWait(patient, time-3));
         print(time, patient, msg);
-        //event.setEvent(8, time);
         EventQ.enQ(time, 8, patient);
     }
     
+    /*Departure(Event): Patient departs
+    people still in waiting room(PriorityQ): create an event for next patient to start treatment
+    */
     public static void departure(Event event) {
         time = event.getTime();
         int patient = event.getID();
-        //Patient patient = event.getPatient();
+        PatientQ.setDeparture(patient, time);
         rooms--;
         msg = String.format("(Priority %d) Departs, %d rm(s) remain", PatientQ.getVIP(patient), 3-rooms);
         print(time, patient, msg);
@@ -143,6 +160,7 @@ public class Events {
         }
     }
     
+    //Print(x, id, msg): "Time x: id msg"
     public static void print(int time, int id, String msg) {
         System.out.printf("Time %3d: %-10d %s\n", time, id, msg);
     }

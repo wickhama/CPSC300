@@ -1,7 +1,11 @@
 package assignment.pkg300.Queues;
 
 /**
- *
+ *Abstract class: Patient, TimeNode, Event, VIP extend 
+ * Basic Queue, linked list class. 
+ * Q.insert() inserts after the node Q
+ * Q.remove() just deques after Q
+ * 
  * @author SamTheTurdBurgler
  */
 public abstract class Q {
@@ -14,8 +18,8 @@ public abstract class Q {
         before = null;
     }
     
-    //Adds a node to the top of the list
-    public void insert(Q node) {
+    //Adds a node after this node
+    protected void insert(Q node) {
         node.setNext(getNext());
         node.setBefore(this);
         if(next != null) next.setBefore(node);
@@ -32,9 +36,9 @@ public abstract class Q {
         return node;
     }
     
-    public Q getNext() {return next;}
-    public Q getBefore() {return before;}
+    protected Q getNext() {return next;}
+    protected Q getBefore() {return before;}
     
-    public void setNext(Q node) {next = node;}
-    public void setBefore(Q node) {before = node;}
+    protected void setNext(Q node) {next = node;}
+    protected void setBefore(Q node) {before = node;}
 }

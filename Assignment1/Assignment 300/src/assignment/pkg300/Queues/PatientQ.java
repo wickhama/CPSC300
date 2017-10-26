@@ -9,8 +9,8 @@ import assignment.pkg300.Reader;
  */
 public class PatientQ {
     
-    private static int id;
-    private static Patient head;
+    private static int id = 28064212;
+    private static Patient head = new Patient();
     
     public PatientQ() {
         id = 28064212;
@@ -48,6 +48,10 @@ public class PatientQ {
         find(id).setPriority(vip);
     }
     
+    public static void setDeparture(int id, int time) {
+        find(id).setDeparture(time);
+    }
+    
     public static int getVIP(int id) {
         return find(id).getPriority();
     }
@@ -69,7 +73,7 @@ public class PatientQ {
         node.reset(time);
     }
     
-    public void print() {
+    public static void print() {
         Patient node = head;
         while(node.getNext() != null) {
             node = (Patient)node.getNext();

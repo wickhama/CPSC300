@@ -1,5 +1,7 @@
+
 run:
 Input file name: data1.txt
+Simulation begins...
 Time  18: 28064212   (Emergency) arrives
 Time  18: 28064212   (Priority 1) Enters Waiting Room
 Time  18: 28064212   (Priority 1) Starts Treatment (Waited 0, 2 rm(s) remain)
@@ -46,4 +48,16 @@ Time  59: 28064216   (Priority 1) Departs, 2 rm(s) remain
 Time  59: 28064218   (Priority 1) Finishes Treatment
 Time  62: 28064218   (Priority 1, Waited 0) Admitted to the hospital
 Time  62: 28064218   (Priority 1) Departs, 3 rm(s) remain
-BUILD SUCCESSFUL (total time: 7 seconds)
+
+...All events complete. Final Summary: 
+
+Patient    Priority    Arrival  Assesment  Treatment  Departure    Waiting
+    Number                 Time       Time   Required       Time       Time
+28064212       1          18         18          2         23          0
+28064213       3          18         18          3         27          1
+28064214       1          19         19         28         52          2
+28064215       1          20         22         19         49          3
+28064216       1          20         20         36         59          0
+28064217       2          21         26          1         54         27
+28064218       1          24         24         10         62         25
+BUILD SUCCESSFUL (total time: 3 seconds)
