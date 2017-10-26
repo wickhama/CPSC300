@@ -2,15 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Code/CPSC300/Assignment1/Assignment1/src/FileReader/Reader.java</file>
-            <file>file:/C:/Code/CPSC300/Assignment1/Assignment1/src/Assignment1/Patient.java</file>
-            <file>file:/C:/Code/CPSC300/Assignment1/Assignment1/src/Nodes/EventQ.java</file>
-            <file>file:/C:/Code/CPSC300/Assignment1/Assignment1/src/Nodes/PatientQ.java</file>
-            <file>file:/C:/Code/CPSC300/Assignment1/Assignment1/src/Nodes/TimeNodes.java</file>
-            <file>file:/C:/Code/CPSC300/Assignment1/Assignment1/src/Nodes/Node.java</file>
-            <file>file:/C:/Code/CPSC300/Assignment1/Assignment1/src/Assignment1/EventSimulation.java</file>
-            <file>file:/C:/Code/CPSC300/Assignment1/Assignment1/src/Assignment1/Event.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
