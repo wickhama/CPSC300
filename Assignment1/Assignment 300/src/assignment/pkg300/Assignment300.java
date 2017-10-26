@@ -15,18 +15,10 @@ import java.util.Scanner;
 public class Assignment300 {
     
     private final Scanner sc;
-    private Reader read;
-    //private final EventQ eventQ;
-    //private final PatientQ patientQ = new PatientQ();
-    //private final PriorityQ vipQ;
     private Event event; //Temporary variable to use in simulation
     
     public Assignment300() {
         sc = new Scanner(System.in);
-        //eventQ = new EventQ();
-        //new PatientQ();
-        //patientQ = new PatientQ();
-        //vipQ = new PriorityQ();
         
         simulate();
     }
@@ -34,7 +26,7 @@ public class Assignment300 {
     private void simulate() {
         System.out.print("Input file name: ");
         try {
-            read = new Reader(sc.nextLine());
+            Reader reader = new Reader(sc.nextLine());
         } catch (FileNotFoundException e) {
             System.out.println("Error with file name : " + e);
             return;

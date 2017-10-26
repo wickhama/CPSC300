@@ -8,10 +8,6 @@ public class EventQ {
     
     private static Event head = new Event();
     
-    public EventQ() {
-        head = new Event();
-    }
-    
     public static void enQ(Event event) {head.enQ(event);}
     public static void enQ(int time, int type, int id) {head.enQ(new Event(time, type, id));}
     public static Event deQ() {return (Event)head.remove();}

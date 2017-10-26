@@ -12,11 +12,6 @@ public class PatientQ {
     private static int id = 28064212;
     private static Patient head = new Patient();
     
-    public PatientQ() {
-        id = 28064212;
-        head = new Patient();
-    }
-    
     private static void enQ(Patient patient) {
         Q node = head;
         while(node.getNext() != null) {
