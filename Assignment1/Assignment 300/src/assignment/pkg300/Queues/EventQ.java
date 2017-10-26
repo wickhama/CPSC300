@@ -14,7 +14,7 @@ public class EventQ {
     }
     
     public static void enQ(Event event) {head.enQ(event);}
-    public static void enQ(int time, int type, Patient patient) {head.enQ(new Event(time, type, patient));}
+    public static void enQ(int time, int type, int id) {head.enQ(new Event(time, type, id));}
     public static Event deQ() {return (Event)head.remove();}
     public static boolean isEmpty() {return (Event)head.getNext() == null;}
     public static void print() {

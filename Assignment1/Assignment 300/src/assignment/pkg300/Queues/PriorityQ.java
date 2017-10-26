@@ -14,9 +14,9 @@ public class PriorityQ {
     
     public static void enQ(Patient patient) {head.enQ(new VIP(patient.getID(), patient.getPriority()));}
     
-    public static Patient deQ() {
-        Patient patient = PatientQ.find(((VIP)head.remove()).getID());
-        return patient;
+    public static int deQ() {
+        //Patient patient = PatientQ.find(((VIP)head.remove()).getID());
+        return ((VIP)head.remove()).getID();
     }
     
     public static boolean isEmpty() {return head.getNext() == null;}

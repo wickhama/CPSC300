@@ -1,0 +1,49 @@
+run:
+Input file name: data1.txt
+Time  18: 28064212   (Emergency) arrives
+Time  18: 28064212   (Priority 1) Enters Waiting Room
+Time  18: 28064212   (Priority 1) Starts Treatment (Waited 0, 2 rm(s) remain)
+Time  18: 28064213   (Walk-in) arrives
+Time  18: 28064213   Starts Assesment (Waited 0)
+Time  19: 28064214   (Emergency) arrives
+Time  19: 28064214   (Priority 1) Enters Waiting Room
+Time  19: 28064214   (Priority 1) Starts Treatment (Waited 0, 1 rm(s) remain)
+Time  20: 28064212   (Priority 1) Finishes Treatment
+Time  20: 28064215   (Walk-in) arrives
+Time  20: 28064216   (Emergency) arrives
+Time  20: 28064216   (Priority 1) Enters Waiting Room
+Time  20: 28064216   (Priority 1) Starts Treatment (Waited 0, 0 rm(s) remain)
+Time  21: 28064217   (Walk-in) arrives
+Time  22: 28064213   Assesment Completed (Priority now 3)
+Time  22: 28064213   (Priority 3) Enters Waiting Room
+Time  22: 28064215   Starts Assesment (Waited 2)
+Time  23: 28064212   (Priority 1, Waited 0) Admitted to the hospital
+Time  23: 28064212   (Priority 1) Departs, 1 rm(s) remain
+Time  23: 28064213   (Priority 3) Starts Treatment (Waited 1, 0 rm(s) remain)
+Time  24: 28064218   (Emergency) arrives
+Time  24: 28064218   (Priority 1) Enters Waiting Room
+Time  26: 28064213   (Priority 3) Finishes Treatment
+Time  26: 28064215   Assesment Completed (Priority now 1)
+Time  26: 28064215   (Priority 1) Enters Waiting Room
+Time  26: 28064217   Starts Assesment (Waited 5)
+Time  27: 28064213   (Priority 3) Departs, 1 rm(s) remain
+Time  27: 28064215   (Priority 1) Starts Treatment (Waited 1, 0 rm(s) remain)
+Time  30: 28064217   Assesment Completed (Priority now 2)
+Time  30: 28064217   (Priority 2) Enters Waiting Room
+Time  46: 28064215   (Priority 1) Finishes Treatment
+Time  47: 28064214   (Priority 1) Finishes Treatment
+Time  49: 28064215   (Priority 1, Waited 0) Admitted to the hospital
+Time  49: 28064215   (Priority 1) Departs, 1 rm(s) remain
+Time  49: 28064218   (Priority 1) Starts Treatment (Waited 25, 0 rm(s) remain)
+Time  52: 28064214   (Priority 1, Waited 2) Admitted to the hospital
+Time  52: 28064214   (Priority 1) Departs, 1 rm(s) remain
+Time  52: 28064217   (Priority 2) Starts Treatment (Waited 22, 0 rm(s) remain)
+Time  53: 28064217   (Priority 2) Finishes Treatment
+Time  54: 28064217   (Priority 2) Departs, 1 rm(s) remain
+Time  56: 28064216   (Priority 1) Finishes Treatment
+Time  59: 28064216   (Priority 1, Waited 0) Admitted to the hospital
+Time  59: 28064216   (Priority 1) Departs, 2 rm(s) remain
+Time  59: 28064218   (Priority 1) Finishes Treatment
+Time  62: 28064218   (Priority 1, Waited 0) Admitted to the hospital
+Time  62: 28064218   (Priority 1) Departs, 3 rm(s) remain
+BUILD SUCCESSFUL (total time: 7 seconds)

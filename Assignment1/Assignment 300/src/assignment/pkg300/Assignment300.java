@@ -14,15 +14,15 @@ import java.util.Scanner;
  */
 public class Assignment300 {
     
-    private Scanner sc = new Scanner(System.in);
+    private final Scanner sc;
     private Reader read;
-    private EventQ eventQ;
-    private PatientQ patientQ;
-    private PriorityQ vipQ;
-    private Patient patient; //Temporary variable to be use in simulation
+    private final EventQ eventQ;
+    private final PatientQ patientQ;
+    private final PriorityQ vipQ;
     private Event event; //Temporary variable to use in simulation
     
     public Assignment300() {
+        sc = new Scanner(System.in);
         eventQ = new EventQ();
         patientQ = new PatientQ();
         vipQ = new PriorityQ();
@@ -39,8 +39,8 @@ public class Assignment300 {
             return;
         }
         //create first event
-        patient = PatientQ.create();
-        EventQ.enQ(patient.getArrivalTime(), 1, patient);
+        int patient = PatientQ.create();
+        EventQ.enQ(PatientQ.getArrival(patient), 1, patient);
 
         while(!EventQ.isEmpty()) {
             event = EventQ.deQ();

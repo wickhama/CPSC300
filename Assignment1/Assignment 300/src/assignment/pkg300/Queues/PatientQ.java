@@ -25,11 +25,6 @@ public class PatientQ {
         node.insert(patient);
     }
     
-    public static void resetWait(int id, int time) {
-        Patient node = find(id);
-        node.reset(time);
-    }
-    
     public static Patient find(int id) {
         Patient node = head;
         while(node.getNext() != null) {
@@ -41,6 +36,39 @@ public class PatientQ {
         return null;
     }
     
+    public static int getArrival(int id) {
+        return find(id).getArrivalTime();
+    }
+    
+    public static void setAssesment(int id, int time) {
+        find(id).setAssesment(time);
+    }
+    
+    public static void setVIP(int id, int vip) {
+        find(id).setPriority(vip);
+    }
+    
+    public static int getVIP(int id) {
+        return find(id).getPriority();
+    }
+    
+    public static boolean isWalkin(int id) {
+        return find(id).isWalkin();
+    }
+    
+    public static int getWait(int id, int time) {
+        return find(id).getWait(time);
+    }
+    
+    public static int getTreatment(int id) {
+        return find(id).getTreatmentTime();
+    }
+    
+    public static void resetWait(int id, int time) {
+        Patient node = find(id);
+        node.reset(time);
+    }
+    
     public void print() {
         Patient node = head;
         while(node.getNext() != null) {
@@ -49,8 +77,8 @@ public class PatientQ {
         }
     }
     
-    public static Patient create() {
-        if(!Reader.hasNext()) return null;
+    public static int create() {
+        if(!Reader.hasNext()) return 0;
         int arrival, treatment;
         boolean walkin;
         try {
@@ -59,12 +87,12 @@ public class PatientQ {
             treatment = Integer.parseInt(Reader.next());
         } catch(NumberFormatException e) {
             System.out.println("Error with data in file: "+e);
-            return null;
+            return 0;
         }
         Patient patient = new Patient(id++, walkin);
         patient.setArrivalTime(arrival);
         patient.setTreatmentTime(treatment);
         enQ(patient);
-        return patient;
+        return patient.getID();
     }
 }

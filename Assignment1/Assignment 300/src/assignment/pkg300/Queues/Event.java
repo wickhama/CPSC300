@@ -7,23 +7,22 @@ package assignment.pkg300.Queues;
  */
 public class Event extends Q{
     
-    private int type;
-    private int time;
-    private final Patient patient;
+    private int type, time, id;
+    //private final Patient patient;
     
     //Only to be used as a head for EventQ
     protected Event() {
-        patient = null;
+        //patient = null;
     }
     
-    public Event(int time, int type, Patient patient) {
+    public Event(int time, int type, int id) {
         this.time = time;
         this.type = type;
-        this.patient = patient;
+        this.id = id;
     }
     
-    public Patient getPatient() { return patient;}
-    public void setEvent(int type, int time) {
+    public int getID() { return id;}
+    protected void setEvent(int type, int time) {
         setType(type);
         setTime(time);
     }
@@ -42,7 +41,7 @@ public class Event extends Q{
                 return;
             }
             else if(event.getTime() == ((Event)node.getNext()).getTime()
-                    && event.getPatient().getID() < ((Event)node.getNext()).getPatient().getID()) {
+                    && event.getID() < ((Event)node.getNext()).getID()) {
                 node.insert(event);
                 return;
             }
@@ -53,11 +52,11 @@ public class Event extends Q{
         node.insert(event);        
     }
     
-    public void print() {
+    protected void print() {
         Q node = this;
         while(node.getNext() != null) {
             node = node.getNext();
-            System.out.printf("Event %d, Time: %d, Patient: %d\n", type, time, patient.getID());
+            System.out.printf("Event %d, Time: %d, Patient: %d\n", type, time, id);
         }
     }
 }
