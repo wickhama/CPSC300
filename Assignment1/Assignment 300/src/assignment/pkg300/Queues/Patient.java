@@ -17,7 +17,7 @@ public class Patient extends Q{
     public Patient(int id, boolean walkin) {
         this.id = id;
         this.walkin = walkin;
-        priority = !walkin ? 1 : 0;
+        priority = walkin ? 6 : 1;
         times = new Times();
     }
     

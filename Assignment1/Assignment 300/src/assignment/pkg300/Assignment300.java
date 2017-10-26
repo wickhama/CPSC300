@@ -3,13 +3,14 @@ package assignment.pkg300;
 import assignment.pkg300.Events.Events;
 import assignment.pkg300.Queues.Event;
 import assignment.pkg300.Queues.EventQ;
-import assignment.pkg300.Queues.Patient;
 import assignment.pkg300.Queues.PatientQ;
-import assignment.pkg300.Queues.PriorityQ;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 /**
- *
+ *CPSC 300 Assignment 1 - Event Simulation
+ * Simulates an emergency room of patients entering via walk-in, emergency.
+ * patients receive treatment and then are admitted to the hospital
+ * or depart.
  * @author SamTheTurdBurgler
  */
 public class Assignment300 {
@@ -23,6 +24,9 @@ public class Assignment300 {
         simulate();
     }
     
+    /*Entry point of Simulation
+        Asks for file name of data. - throws error if file is not found.
+    */
     private void simulate() {
         System.out.print("Input file name: ");
         try {

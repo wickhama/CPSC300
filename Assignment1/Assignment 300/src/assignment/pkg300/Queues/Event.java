@@ -3,6 +3,7 @@ package assignment.pkg300.Queues;
 /**
  *Event is the event that will be executed. 
  * It holds a reference to the Patient 
+ * 
  * @author SamTheTurdBurgler
  */
 public class Event extends Q{
@@ -40,14 +41,18 @@ public class Event extends Q{
                 node.insert(event);
                 return;
             }
-            else if(event.getTime() == ((Event)node.getNext()).getTime()
-                    && event.getID() < ((Event)node.getNext()).getID()) {
-                node.insert(event);
-                return;
+            else if(event.getTime() == ((Event)node.getNext()).getTime()) {
+                if(PatientQ.getVIP(event.getID()) < PatientQ.getVIP(((Event)node.getNext()).getID())) {
+                    node.insert(event);
+                    return;
+                }
+                else if(PatientQ.getVIP(event.getID()) == PatientQ.getVIP(((Event)node.getNext()).getID())
+                        && event.getID() < ((Event)node.getNext()).getID()) {
+                    node.insert(event);
+                    return;
+                }
             }
-            else {
-                node = node.getNext();
-            }
+            node = node.getNext();
         }
         node.insert(event);        
     }

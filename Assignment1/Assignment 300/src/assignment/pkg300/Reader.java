@@ -12,15 +12,24 @@ public class Reader {
     
     private static Scanner sc;
     
+    /*Constructor(String: name of file)
+    Throws FileNotFoundException
+    */
     public Reader(String name) throws FileNotFoundException {
         sc = new Scanner(new File(name));
     }
     
+    /*next() 
+    returns String: next token in file
+    */
     public static String next() {
         if(hasNext()) return sc.next();
         else return "";
     }
     
+    /*hasNext()
+    returns if file has more tokens.
+    */
     public static boolean hasNext() {
         return sc.hasNext();
     }

@@ -19,8 +19,10 @@ public class Events {
     private static int time;
     private static String msg;
     
+    //Tracks FIFO Q times
     private static int assesmentTime;
     private static int admitTime;
+    
     private static int rooms;
     private static final Random RAND = new Random(1000);
     
@@ -30,7 +32,7 @@ public class Events {
         admitTime = 0;
     }
     
-    /*Arrival: Patient arrives
+    /*arrival(Event): Patient arrives
     walk-in : event is created for them to be assesed.
     Emergency : event is created for them to enter the waiting room
     then next line of data is read and processed
@@ -56,7 +58,7 @@ public class Events {
         EventQ.enQ(PatientQ.getArrival(patient), 1, patient);
     }
     
-    /*Assesment: Patient is assesed
+    /*assesment(Event): Patient is assesed
     event is created for when assesment is done. 
     assesmentTime is increased to when patient will be done.
     */
@@ -68,7 +70,7 @@ public class Events {
         EventQ.enQ(time+4, 3, patient);
     }
     
-    /*AssesmentComplete: Patient is finished with assesment
+    /*assesmentComplete(Event): Patient is finished with assesment
     patient gets a priority number
     event is created to enter waiting room
     */
@@ -81,7 +83,7 @@ public class Events {
         print(time, patient, msg);
     }
     
-    /*Enters: Patient enters waiting room
+    /*enters(Event): Patient enters waiting room
     room available: event is created to start treatment
     room unavailable: patient is added to priorityQ
     */
@@ -101,7 +103,7 @@ public class Events {
         print(time, patient, msg);
     }
     
-    /*TreatmentStarted: Patient starts Treatment
+    /*treatmentStarted(Event): Patient starts Treatment
     event is created for when patient is finished treatment
     */
     public static void treatmentStarted(Event event) {
@@ -112,7 +114,7 @@ public class Events {
         print(time, patient, msg);
     }
     
-    /*TreatmentFinished(Event): patient is finished treatement
+    /*treatmentFinished(Event): patient is finished treatement
     priority 1: event is created for patient to be admitted
                 addmitTime is increased to when patient will be finished admittance
     priority !1: event is created for patient to depart
@@ -133,7 +135,7 @@ public class Events {
         print(time, patient, msg);
     }
     
-    /*Admitted(Event): Patient is admitted to hospital
+    /*admitted(Event): Patient is admitted to hospital
     event is created for patient to depart
     */
     public static void admitted(Event event) {
@@ -144,7 +146,7 @@ public class Events {
         EventQ.enQ(time, 8, patient);
     }
     
-    /*Departure(Event): Patient departs
+    /*departure(Event): Patient departs
     people still in waiting room(PriorityQ): create an event for next patient to start treatment
     */
     public static void departure(Event event) {
@@ -160,7 +162,7 @@ public class Events {
         }
     }
     
-    //Print(x, id, msg): "Time x: id msg"
+    //print(int x, int id, int msg): "Time x: id msg"
     public static void print(int time, int id, String msg) {
         System.out.printf("Time %3d: %-10d %s\n", time, id, msg);
     }

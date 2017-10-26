@@ -31,10 +31,6 @@ public class PatientQ {
         return null;
     }
     
-    public static int getArrival(int id) {
-        return find(id).getArrivalTime();
-    }
-    
     public static void setAssesment(int id, int time) {
         find(id).setAssesment(time);
     }
@@ -45,6 +41,10 @@ public class PatientQ {
     
     public static void setDeparture(int id, int time) {
         find(id).setDeparture(time);
+    }
+    
+    public static int getArrival(int id) {
+        return find(id).getArrivalTime();
     }
     
     public static int getVIP(int id) {
