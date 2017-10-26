@@ -1,95 +1,56 @@
-
 run:
-Input file name: data2.txt
+Input file name: data3.txt
 Simulation begins...
-Time   1: 28064212   (Emergency) arrives
-Time   1: 28064212   (Priority 1) Enters Waiting Room
-Time   1: 28064212   (Priority 1) Starts Treatment (Waited 0, 2 rm(s) remain)
-Time   2: 28064213   (Emergency) arrives
-Time   2: 28064213   (Priority 1) Enters Waiting Room
-Time   2: 28064213   (Priority 1) Starts Treatment (Waited 0, 1 rm(s) remain)
-Time   3: 28064214   (Walk-in) arrives
-Time   3: 28064214   Starts Assesment (Waited 0)
-Time   4: 28064215   (Walk-in) arrives
-Time   4: 28064216   (Walk-in) arrives
-Time   4: 28064217   (Emergency) arrives
-Time   4: 28064217   (Priority 1) Enters Waiting Room
-Time   4: 28064217   (Priority 1) Starts Treatment (Waited 0, 0 rm(s) remain)
-Time   5: 28064218   (Walk-in) arrives
-Time   6: 28064219   (Walk-in) arrives
-Time   7: 28064214   Assesment Completed (Priority now 3)
-Time   7: 28064214   (Priority 3) Enters Waiting Room
-Time   7: 28064215   Starts Assesment (Waited 3)
-Time   7: 28064220   (Walk-in) arrives
-Time   8: 28064221   (Emergency) arrives
-Time   8: 28064221   (Priority 1) Enters Waiting Room
-Time   9: 28064222   (Walk-in) arrives
-Time  11: 28064215   Assesment Completed (Priority now 1)
-Time  11: 28064215   (Priority 1) Enters Waiting Room
-Time  11: 28064216   Starts Assesment (Waited 7)
-Time  15: 28064216   Assesment Completed (Priority now 2)
-Time  15: 28064216   (Priority 2) Enters Waiting Room
-Time  15: 28064218   Starts Assesment (Waited 10)
-Time  19: 28064218   Assesment Completed (Priority now 5)
-Time  19: 28064218   (Priority 5) Enters Waiting Room
-Time  19: 28064219   Starts Assesment (Waited 13)
-Time  23: 28064219   Assesment Completed (Priority now 3)
-Time  23: 28064219   (Priority 3) Enters Waiting Room
-Time  23: 28064220   Starts Assesment (Waited 16)
-Time  27: 28064220   Assesment Completed (Priority now 5)
-Time  27: 28064220   (Priority 5) Enters Waiting Room
-Time  27: 28064222   Starts Assesment (Waited 18)
-Time  31: 28064222   Assesment Completed (Priority now 2)
-Time  31: 28064222   (Priority 2) Enters Waiting Room
-Time 101: 28064212   (Priority 1) Finishes Treatment
-Time 102: 28064213   (Priority 1) Finishes Treatment
-Time 104: 28064212   (Priority 1, Waited 0) Admitted to the hospital
-Time 104: 28064212   (Priority 1) Departs, 1 rm(s) remain
-Time 104: 28064215   (Priority 1) Starts Treatment (Waited 93, 0 rm(s) remain)
-Time 104: 28064217   (Priority 1) Finishes Treatment
-Time 107: 28064213   (Priority 1, Waited 2) Admitted to the hospital
-Time 107: 28064213   (Priority 1) Departs, 1 rm(s) remain
-Time 107: 28064221   (Priority 1) Starts Treatment (Waited 99, 0 rm(s) remain)
-Time 110: 28064217   (Priority 1, Waited 3) Admitted to the hospital
-Time 110: 28064217   (Priority 1) Departs, 1 rm(s) remain
-Time 110: 28064216   (Priority 2) Starts Treatment (Waited 95, 0 rm(s) remain)
-Time 204: 28064215   (Priority 1) Finishes Treatment
-Time 207: 28064215   (Priority 1, Waited 0) Admitted to the hospital
-Time 207: 28064215   (Priority 1) Departs, 1 rm(s) remain
-Time 207: 28064221   (Priority 1) Finishes Treatment
-Time 207: 28064222   (Priority 2) Starts Treatment (Waited 176, 0 rm(s) remain)
-Time 210: 28064216   (Priority 2) Finishes Treatment
-Time 210: 28064221   (Priority 1, Waited 0) Admitted to the hospital
-Time 210: 28064221   (Priority 1) Departs, 1 rm(s) remain
-Time 210: 28064214   (Priority 3) Starts Treatment (Waited 203, 0 rm(s) remain)
-Time 211: 28064216   (Priority 2) Departs, 1 rm(s) remain
-Time 211: 28064219   (Priority 3) Starts Treatment (Waited 188, 0 rm(s) remain)
-Time 307: 28064222   (Priority 2) Finishes Treatment
-Time 308: 28064222   (Priority 2) Departs, 1 rm(s) remain
-Time 308: 28064218   (Priority 5) Starts Treatment (Waited 289, 0 rm(s) remain)
-Time 310: 28064214   (Priority 3) Finishes Treatment
-Time 311: 28064214   (Priority 3) Departs, 1 rm(s) remain
-Time 311: 28064219   (Priority 3) Finishes Treatment
-Time 311: 28064220   (Priority 5) Starts Treatment (Waited 284, 0 rm(s) remain)
-Time 312: 28064219   (Priority 3) Departs, 1 rm(s) remain
-Time 408: 28064218   (Priority 5) Finishes Treatment
-Time 409: 28064218   (Priority 5) Departs, 2 rm(s) remain
-Time 411: 28064220   (Priority 5) Finishes Treatment
-Time 412: 28064220   (Priority 5) Departs, 3 rm(s) remain
+Time  23: 28064212   (Emergency) arrives
+Time  23: 28064212   (Priority 1) Enters Waiting Room
+Time  23: 28064212   (Priority 1) Starts Treatment (Waited 0, 2 rm(s) remain)
+Time  23: 28064213   (Emergency) arrives
+Time  23: 28064213   (Priority 1) Enters Waiting Room
+Time  23: 28064213   (Priority 1) Starts Treatment (Waited 0, 1 rm(s) remain)
+Time  23: 28064214   (Emergency) arrives
+Time  23: 28064214   (Priority 1) Enters Waiting Room
+Time  23: 28064214   (Priority 1) Starts Treatment (Waited 0, 0 rm(s) remain)
+Time  29: 28064215   (Walk-in) arrives
+Time  29: 28064215   Starts Assesment (Waited 0)
+Time  30: 28064216   (Walk-in) arrives
+Time  30: 28064217   (Walk-in) arrives
+Time  33: 28064212   (Priority 1) Finishes Treatment
+Time  33: 28064215   Assesment Completed (Priority now 3)
+Time  33: 28064215   (Priority 3) Enters Waiting Room
+Time  33: 28064216   Starts Assesment (Waited 3)
+Time  34: 28064213   (Priority 1) Finishes Treatment
+Time  35: 28064214   (Priority 1) Finishes Treatment
+Time  36: 28064212   (Priority 1, Waited 0) Admitted to the hospital
+Time  36: 28064212   (Priority 1) Departs, 1 rm(s) remain
+Time  36: 28064215   (Priority 3) Starts Treatment (Waited 3, 0 rm(s) remain)
+Time  37: 28064216   Assesment Completed (Priority now 1)
+Time  37: 28064216   (Priority 1) Enters Waiting Room
+Time  37: 28064217   Starts Assesment (Waited 7)
+Time  38: 28064215   (Priority 3) Finishes Treatment
+Time  39: 28064213   (Priority 1, Waited 2) Admitted to the hospital
+Time  39: 28064213   (Priority 1) Departs, 1 rm(s) remain
+Time  39: 28064215   (Priority 3) Departs, 1 rm(s) remain
+Time  39: 28064216   (Priority 1) Starts Treatment (Waited 2, 1 rm(s) remain)
+Time  41: 28064217   Assesment Completed (Priority now 2)
+Time  41: 28064217   (Priority 2) Enters Waiting Room
+Time  41: 28064217   (Priority 2) Starts Treatment (Waited 0, 0 rm(s) remain)
+Time  42: 28064214   (Priority 1, Waited 4) Admitted to the hospital
+Time  42: 28064214   (Priority 1) Departs, 1 rm(s) remain
+Time  44: 28064216   (Priority 1) Finishes Treatment
+Time  46: 28064217   (Priority 2) Finishes Treatment
+Time  47: 28064216   (Priority 1, Waited 0) Admitted to the hospital
+Time  47: 28064216   (Priority 1) Departs, 2 rm(s) remain
+Time  47: 28064217   (Priority 2) Departs, 3 rm(s) remain
 
 ...All events complete. Final Summary: 
 
 Patient    Priority    Arrival  Assesment  Treatment  Departure    Waiting
     Number                 Time       Time   Required       Time       Time
-28064212       1           1          1        100        104          0
-28064213       1           2          2        100        107          2
-28064214       3           3          3        100        311        203
-28064215       1           4          7        100        207         96
-28064216       2           4         11        100        211        102
-28064217       1           4          4        100        110          3
-28064218       5           5         15        100        409        299
-28064219       3           6         19        100        312        201
-28064220       5           7         23        100        412        300
-28064221       1           8          8        100        210         99
-28064222       2           9         27        100        308        194
-BUILD SUCCESSFUL (total time: 4 seconds)
+28064212       1          23         23         10         36          0
+28064213       1          23         23         11         39          2
+28064214       1          23         23         12         42          4
+28064215       3          29         29          2         39          3
+28064216       1          30         33          5         47          5
+28064217       2          30         37          5         47          7
+BUILD SUCCESSFUL (total time: 6 seconds)
+
