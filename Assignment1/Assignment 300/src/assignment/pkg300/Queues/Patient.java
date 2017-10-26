@@ -3,6 +3,9 @@ package assignment.pkg300.Queues;
 
 /**
  *Patients of the simulation
+ * Mediated by PatientQ.
+ * Ordered in numerical order
+ * 
  * @author SamTheTurdBurgler
  */
 public class Patient extends Q{
@@ -21,32 +24,38 @@ public class Patient extends Q{
         times = new Times();
     }
     
-    public void setPriority(int priority) {this.priority = priority;}
-    public int getPriority() {return priority;}
+    protected void setPriority(int priority) {this.priority = priority;}
+    protected int getPriority() {return priority;}
     
-    public boolean isWalkin() {return walkin;}
-    public int getID() {return id;}
+    protected boolean isWalkin() {return walkin;}
+    protected int getID() {return id;}
     protected void reset(int time) {start = time;}
-    public int getWait(int time) {
+    
+    /*getWait(int)
+    calculates how long the patient has been waiting since 
+    last reset. Adds calculated time to TotalWait, and 
+    then resets the wait counter.
+    */
+    protected int getWait(int time) {
         int wait = time - start;
         setTotalWait(wait);
         reset(time);
         return wait;
     }
     
-    public void setArrivalTime(int time) {start = time; times.setArrival(time);}
-    public void setAssesment(int time) {times.setAssesment(time);}
-    public void setTreatmentTime(int time) {times.setTreatmentTime(time);}
-    public void setDeparture(int time) {times.setDeparture(time);}
-    public void setTotalWait(int time) {times.setTotalWait(time);}  //Adds the time passed to the time already in the list
+    protected void setArrivalTime(int time) {start = time; times.setArrival(time);}
+    protected void setAssesment(int time) {times.setAssesment(time);}
+    protected void setTreatmentTime(int time) {times.setTreatmentTime(time);}
+    protected void setDeparture(int time) {times.setDeparture(time);}
+    protected void setTotalWait(int time) {times.setTotalWait(time);}  
     
-    public int getArrivalTime() {return times.getArrival();}
-    public int getAssesment() {return times.getAssesment();}
-    public int getTreatmentTime() {return times.getTreatmentTime();}
-    public int getDeparture() {return times.getDeparture();}
-    public int getTotalWait() {return times.getTotalWait();}
+    protected int getArrivalTime() {return times.getArrival();}
+    protected int getAssesment() {return times.getAssesment();}
+    protected int getTreatmentTime() {return times.getTreatmentTime();}
+    protected int getDeparture() {return times.getDeparture();}
+    protected int getTotalWait() {return times.getTotalWait();}
     
-    public void print() {
+    protected void print() {
         System.out.printf("%-10d %5d ", id, priority);
         times.print();
         System.out.println();

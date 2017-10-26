@@ -3,8 +3,8 @@ package assignment.pkg300.Queues;
 /**
  *Abstract class: Patient, TimeNode, Event, VIP extend 
  * Basic Queue, linked list class. 
- * Q.insert() inserts after the node Q
- * Q.remove() just deques after Q
+ * Q.insert(node) inserts after
+ * Q.remove(node) removes the node after
  * 
  * @author SamTheTurdBurgler
  */

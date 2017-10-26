@@ -1,14 +1,18 @@
 package assignment.pkg300.Queues;
 
 /**
- *
+ *VIP extends Q
+ * Tracks the patient waiting in the waiting room
+ * Orders by Priority of patients waiting
+ * Mediated by PriorityQ
+ * 
  * @author SamTheTurdBurgler
  */
 public class VIP extends Q {
     
     private int id, priority;
     
-    //To be only used as head
+    //To be only used as head in PriorityQ
     protected VIP() {
     }
     
@@ -20,6 +24,7 @@ public class VIP extends Q {
     protected int getID() {return id;}
     protected int getVIP() {return priority;}
     
+    //Prioritizes by Priority number.    
     protected void enQ(VIP patient) {
         Q node = this;
         while(node.getNext() != null) {

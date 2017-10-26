@@ -2,7 +2,12 @@ package assignment.pkg300.Queues;
 
 /**
  *List of times for patient that is to be printed out at the end of the simulation
- * There is in order ArrivalTime, AssesmentTime, TimeRequiredForTreatment, DepartureTime, TotalTimeWaiting
+ * Order: ArrivalTime, AssesmentTime, TimeRequiredForTreatment, DepartureTime, TotalTimeWaiting
+ * Times acts as a mediator for TimeNode to ensure that TimeNode is not altered or accessed
+ * outside of the defined parameters below.
+ * 
+ * only accessed by Patient
+ * 
  * @author SamTheTurdBurgler
  */
 public class Times {
@@ -22,63 +27,31 @@ public class Times {
         }
     }
     
-    protected int getArrival() {
-        node = (TimeNode)getNode(1);
-        return node.getTime();
-    }
+    protected int getArrival() {return ((TimeNode)getNode(1)).getTime();}
+    protected void setArrival(int time) {getNode(1).setTime(time);}
     
-    protected void setArrival(int time) {
-        node = (TimeNode)getNode(1);
-        node.setTime(time);
-    }
+    protected int getAssesment() {return getNode(2).getTime();}
+    protected void setAssesment(int time) {getNode(2).setTime(time);}
     
-    protected int getAssesment() {
-        node = (TimeNode)getNode(2);
-        return node.getTime();
-    }
+    protected int getTreatmentTime() {return getNode(3).getTime();}
+    protected void setTreatmentTime(int time) {getNode(3).setTime(time);}
     
-    protected void setAssesment(int time) {
-        node = (TimeNode)getNode(2);
-        node.setTime(time);
-    }
+    protected int getDeparture() {return getNode(4).getTime();}
+    protected void setDeparture(int time) {getNode(4).setTime(time);}
     
-    protected int getTreatmentTime() {
-        node = (TimeNode)getNode(3);
-        return node.getTime();
-    }
-    
-    protected void setTreatmentTime(int time) {
-        node = (TimeNode)getNode(3);
-        node.setTime(time);
-    }
-    
-    protected int getDeparture() {
-        node = (TimeNode)getNode(4);
-        return node.getTime();
-    }
-    
-    protected void setDeparture(int time) {
-        node = (TimeNode)getNode(4);
-        node.setTime(time);
-    }
-    
-    protected int getTotalWait() {
-        node = (TimeNode)getNode(5);
-        return node.getTime();
-    }
-    
+    protected int getTotalWait() {return getNode(5).getTime();}
     protected void setTotalWait(int time) {
         node = (TimeNode)getNode(5);
         node.setTime(node.getTime()+time);
     }
     
-    private Q getNode(int position) {
-        Q qNode = head;
+    private TimeNode getNode(int position) {
+        node = head;
         
         for(int i=0; i<position; i++) {
-            qNode = qNode.getNext();
+            node = (TimeNode)node.getNext();
         }
-        return qNode;
+        return node;
     }
     
     protected void print() {

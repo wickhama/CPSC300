@@ -91,5 +91,7 @@ Patient    Priority    Arrival  Assesment  Treatment  Departure    Waiting
 28064220       5           7         23        100        412        300
 28064221       1           8          8        100        210         99
 28064222       2           9         27        100        308        194
-BUILD SUCCESSFUL (total time: 4 seconds)
+Number of Patients: 11
+Average Wait: 136.272720
+BUILD SUCCESSFUL (total time: 5 seconds)
 
