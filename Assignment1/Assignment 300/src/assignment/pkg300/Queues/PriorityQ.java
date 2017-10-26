@@ -6,16 +6,11 @@ package assignment.pkg300.Queues;
  */
 public class PriorityQ {
     
-    private static VIP head;
-    
-    public PriorityQ() {
-        head = new VIP();
-    }
+    private static VIP head = new VIP();
     
     public static void enQ(Patient patient) {head.enQ(new VIP(patient.getID(), patient.getPriority()));}
     
     public static int deQ() {
-        //Patient patient = PatientQ.find(((VIP)head.remove()).getID());
         return ((VIP)head.remove()).getID();
     }
     

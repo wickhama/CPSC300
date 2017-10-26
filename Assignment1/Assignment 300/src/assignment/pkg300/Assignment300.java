@@ -16,17 +16,17 @@ public class Assignment300 {
     
     private final Scanner sc;
     private Reader read;
-    private final EventQ eventQ;
+    //private final EventQ eventQ;
     //private final PatientQ patientQ = new PatientQ();
-    private final PriorityQ vipQ;
+    //private final PriorityQ vipQ;
     private Event event; //Temporary variable to use in simulation
     
     public Assignment300() {
         sc = new Scanner(System.in);
-        eventQ = new EventQ();
+        //eventQ = new EventQ();
         //new PatientQ();
         //patientQ = new PatientQ();
-        vipQ = new PriorityQ();
+        //vipQ = new PriorityQ();
         
         simulate();
     }

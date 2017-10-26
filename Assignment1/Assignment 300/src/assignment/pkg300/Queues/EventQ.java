@@ -6,8 +6,7 @@ package assignment.pkg300.Queues;
  */
 public class EventQ {
     
-    private static Event head;
-    private Event node; //Temporary variable to be used in methods
+    private static Event head = new Event();
     
     public EventQ() {
         head = new Event();
